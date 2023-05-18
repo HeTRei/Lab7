@@ -1,13 +1,9 @@
 #include <iostream>
 #include <iomanip>
-#define N 10
-#define M 10
-
 int main()
 {
     std::setlocale(LC_ALL, "ua");
     int n, m, a, b;
-    int MatrixA[N][M], MatrixB[N][M];
     srand(time(nullptr));
 
     std::cout << "Введіть кількість рядків матриці: ";
@@ -15,9 +11,9 @@ int main()
     std::cout << "Введіть кількість стовпців матриці: ";
     std::cin >> m;
 
-    if (std::cin.fail() || n != m ||  m > M)
+    if (std::cin.fail())
     {
-        std::cout << "\nНеправильне значення! Кількість рядків та стовпців повинна збігатися та бути цілим числом, не більшим за 10";
+        std::cout << "\nНеправильне значення!";
         return 1;
     }
 
@@ -30,8 +26,12 @@ int main()
         std::cout << "\nНеправильне значення, або число а більше числа b";
         return 2;
     }
-
-    std::cout << "Матриця A:\n";
+    int **MatrixA = new int *[n];
+    for (int i = 0; i < n; i++)
+    {
+        MatrixA[i] = new int [m];
+    }
+    std::cout << "Матриця А:\n";
     for (int i = 0; i < n; i++)
     {
         for (int j = 0; j < m; j++)
@@ -41,28 +41,10 @@ int main()
         }
         std::cout << std::endl;
     }
-
-    std::cout << "Матриця B:\n";
     for (int i = 0; i < n; i++)
     {
-        for (int j = 0; j < m; j++)
-        {
-            MatrixB[i][j] = MatrixA[i][j];
-        }
+        delete[] MatrixA[i];
     }
-    for (int j = 0; j < m; j++)
-    {
-        MatrixB[j][m-1] = MatrixA[0][j] + MatrixA[n-1][j];
-    }
-    for (int i = 0; i < n; i++)
-    {
-        for (int j = 0; j < m; j++)
-        {
-            std::cout << std::setw(6) << MatrixB[i][j] << " ";
-        }
-        std::cout << std::endl;
-    }
-
+    delete[] MatrixA;
     return 0;
-
 }
