@@ -27,9 +27,7 @@ int main()
 
     int **MatrixA = new int *[n];
     for (int i = 0; i < n; i++)
-    {
         MatrixA[i] = new int [m];
-    }
     std::cout << "Матриця А:\n";
     for (int i = 0; i < n; i++)
     {
@@ -44,11 +42,10 @@ int main()
     int *MatrixB = new int [n];
     for (int i = 0; i < n; i++)
     {
-        int AmountOfPositiveElements = 0;
+        MatrixB[i] = 0;
         for (int j = 0; j < m; j++)
             if (MatrixA[i][j] > 0)
-                AmountOfPositiveElements++;
-        MatrixB[i] = AmountOfPositiveElements;
+                MatrixB[i]++;
     }
     std::cout << "Матриця B:\n";
     for (int i = 0; i < n; i++)
@@ -65,9 +62,7 @@ int main()
     for (int i = 0; i < n; i++)
     {
         for (int j = 0; j < m; j++)
-        {
             MatrixC[i][i] += MatrixA[i][j] + MatrixA[j][i];
-        }
         MatrixC[i][i] -= MatrixA[i][i] + MatrixA[i][i];
     }
 
@@ -75,9 +70,7 @@ int main()
     for (int i = 0; i < n; i++)
     {
         for (int j = 0; j < m; j++)
-        {
             std::cout << std::setw(6) << MatrixC[i][j] << " ";
-        }
         std::cout << std::endl;
     }
 
