@@ -44,22 +44,14 @@ int main()
 
     std::cout << "Матриця B:\n";
     for (int i = 0; i < n; i++)
-    {
         for (int j = 0; j < m; j++)
-        {
             MatrixB[i][j] = MatrixA[i][j];
-        }
-    }
     for (int j = 0; j < m; j++)
-    {
         MatrixB[j][m-1] = MatrixA[0][j] + MatrixA[n-1][j];
-    }
     for (int i = 0; i < n; i++)
     {
         for (int j = 0; j < m; j++)
-        {
             std::cout << std::setw(6) << MatrixB[i][j] << " ";
-        }
         std::cout << std::endl;
     }
 
